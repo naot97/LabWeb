@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>bai 1</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+*{
+	font-size: 20px;
+	margin-top: 20px;
+}
+form{
+	background: #eee;
+	margin: 0px auto;
+	width: 50%;
+}
+input{
+	vertical-align: bottom;
+	display: table-cell;
+	width: 250px;
+	height: 50px;
+	margin-right: 40px;
+}
+button{
+	margin-right: 10px;
+	width: 100px;
+	height: 50px;
+}
+</style>
+<script>
+	document.getElementsByName("add_btn")[0].onclick = function(){func("add")};
+	document.getElementsByName("sub_btn")[0].onclick = function(){func("sub")};
+	document.getElementsByName("mul_btn")[0].onclick = function(){func("mul")};
+	document.getElementsByName("div_btn")[0].onclick = function(){func("div")};
+	document.getElementsByName("pow_btn")[0].onclick = function(){func("pow")};
+
+
+	function func(kind){
+		var s = "";
+		try{
+			var x = parseFloat(document.getElementsByName("number1")[0].value);
+			var y = parseFloat(document.getElementsByName("number2")[0].value);
+			switch(kind){
+				case "add":
+					s = x + y;
+					break;
+				case "sub":
+					s = x - y;
+					break;
+				case "mul":
+					s = x * y;
+					break;
+				case "div" :
+					s = x / y;
+					break;
+				default :
+					s = Math.pow(x, y);
+					break;
+			}
+		}
+		catch(err){
+			s = err.message;
+		}
+		console.log(s);
+		document.getElementsByName("result")[0].value = s;
+	}
+</script>
+</head>
+<body>
+<form action="javascript:void(0);">
+	<input type="number" name="number1" placeholder="NUMBER ONE">
+	<input type="number" name="number2" placeholder="NUMBER TWO">
+	<div id="button-div">
+		<button name="add_btn">+</button>
+		<button name="sub_btn">-</button>
+		<button name="mul_btn">X</button>
+		<button name="div_btn">/</button>
+		<button name="pow_btn">^</button>
+	</div>
+	<input type="text" name="result" placeholder="RESULT" disabled style="color: red;">
+</form>
+</body>
+</html>
+

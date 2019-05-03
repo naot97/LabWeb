@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>bai 2</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+*{
+	margin: 2px;
+}
+form{
+	background: #eee;
+	width: 400px;
+	margin: 0px auto;
+}
+p{
+	font-weight: bold;
+}
+
+</style>
+<script>
+document.getElementsByName("submit_btn")[0].onclick = function(){sub();};
+document.getElementsByName("reset_btn")[0].onclick = function(){re();};
+function check_length(str){
+	var l = str.length;
+	if (l > 30 || l < 2) return false ;
+	else return true;
+}
+function re(){
+	document.getElementsByName('f_name')[0].value = "";
+	document.getElementsByName('l_name')[0].value = "";
+	document.getElementsByName('email')[0].value = "";
+	document.getElementsByName('password')[0].value = "";
+	document.getElementById("date").selectedIndex = "0"	;
+	document.getElementById("month").selectedIndex = "0";	
+	document.getElementById("year").selectedIndex = "0"	;
+	document.getElementsByName('gender')[0].checked  = true;
+	document.getElementById("country").selectedIndex = "0"	;
+	document.getElementById("about").value = "";
+}
+function sub(){
+	//check f name
+	if (!check_length(document.getElementsByName('f_name')[0].value)){
+		alert('Wrong First name');
+		return;
+	}
+	// check lastname
+	if (!check_length(document.getElementsByName('l_name')[0].value)){
+		alert('Wrong Last name');
+		return;
+	}
+	// check email
+	var email = document.getElementsByName('email')[0].value;
+	var result = email.match(/\S+@\S+.\S+/i);
+	if (!check_length(email) || email != result){
+		alert('Wrong Email');
+		return;
+	}
+	// check password
+	if (!check_length(document.getElementsByName('password')[0].value)) {
+		alert('Wrong Password');
+		return;	
+	}
+	// check birthday
+	var birth = ["date","month","year"];
+	for (var i = 0; i <= 2; i++) {
+		var e = document.getElementById(birth[i]);
+		var value = e.options[e.selectedIndex].value;
+		if (value == 0){
+			alert('Wrong ' + birth[i]);
+			return;
+		}
+	}
+	alert("Complete!");
+}
+</script>
+</head>
+<body>
+	<form action="javascript:void(0);">
+		<p>First name :</p>
+		<input type="text" name="f_name"  placeholder="Enter First name">
+
+		<p>Last name :</p>
+		<input type="text" name="l_name" placeholder="Enter Last name">
+
+		<p>Email :</p>
+		<input type="text" name="email" placeholder="Enter Email">
+
+		<p>Password :</p>
+		<input type="password" name="password" placeholder="Enter Password">
+		
+		<p>Birthday :</p>
+		<select id="date">
+			<option value="0">-- Date --</option>
+			<script >
+				for (var i = 1; i <= 31; i++) {
+						document.write("<option>" + i.toString() +"</option>");
+				}
+			</script>	
+		</select>
+		<select id="month">
+			<option value="0">-- Month --</option>
+			<option>January</option>
+			<option>Febuary</option>
+			<option>March</option>
+			<option>April</option>
+			<option>May</option>
+			<option>June</option>
+			<option>July</option>
+			<option>August</option>
+			<option>September</option>
+			<option>October</option>
+			<option>November</option>
+			<option>December</option>
+		</select>
+		<select id="year">
+			<option value="0">-- Year --</option>
+			<script >
+				for (var i = 1965; i <= 2019; i++) {
+						document.write("<option>" + i.toString() +"</option>");
+				}
+			</script>
+		</select>
+		
+		<p>Gender :</p>
+		<input type="radio" name="gender" value="male" checked="checked"> Male<br>
+		<input type="radio" name="gender" value="female"> Female<br>
+		<input type="radio" name="gender" value="other"> Other
+		
+		<p>Country :</p>
+		<select id="country">
+			<option>Vietnam</option>
+			<option>Australia</option>
+			<option>United States</option>
+			<option>India</option>
+			<option>Other</option>
+		</select>
+
+		<p>About :</p>
+		<textarea maxlength="10000" id="about"></textarea>
+		
+		<div>
+			<button name="submit_btn" >Submit</button>
+			<button name="reset_btn" >Reset</button>
+		</div>
+	</form>
+</body>
+</html>
+
+
+
+

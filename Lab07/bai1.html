@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>bai 1</title>
+<style>
+*{
+	margin: 0px;
+	padding: 0px;
+}
+td{
+	width: 100px;
+	height: 50px;
+	border: solid 1px black;
+}
+button{
+	margin-right: 20px;
+	border-radius: 10px;
+	height: 30px;
+	width: 120px;
+}
+
+td{
+	word-wrap: break-word;
+}
+
+.add{
+	background:  #80ff80;
+	color: white;
+}
+.delete{
+	background:  #ff471a;
+}
+div{
+	margin:50px auto 20px auto;
+}
+</style>
+<script>
+function add_table() {
+	delete_table();
+	var body = document.getElementsByTagName('body')[0];
+	var table = document.createElement('table');
+	var  tr1 = document.createElement('tr');
+	var td11 = create_td();
+	var td12 = create_td();
+	var  tr2 = document.createElement('tr');
+	var td21 = create_td();
+	var td22 = create_td();
+	//
+	body.appendChild(table);
+	table.appendChild(tr1);
+	table.appendChild(tr2);
+	tr1.appendChild(td11);
+	tr1.appendChild(td12);
+	tr2.appendChild(td21);
+	tr2.appendChild(td22);
+}
+
+function create_td() {
+	var new_td = document.createElement('td');
+	new_td.contentEditable  = "true";
+	return new_td;
+}
+
+function delete_table() {
+	var table_arr = document.getElementsByTagName('table');
+	var l = table_arr.length;
+	for(i = 0; i < l; i++) 
+		table_arr[0].parentNode.removeChild(table_arr[0]);
+}
+
+function add_row() {
+	var table = document.getElementsByTagName('table')[0];
+	try{
+		var num_col = table.firstChild.childNodes.length;
+	}
+	catch(err){
+		var num_col = 2;
+	} 
+	var new_tr = document.createElement('tr');
+	table.appendChild(new_tr);
+	//
+	for (i = 0 ; i < num_col; i++){
+		var new_td = create_td();
+		new_tr.appendChild(new_td);
+	}
+}
+
+function add_column() {
+	var table = document.getElementsByTagName('table')[0];
+	var num_row = table.childNodes.length;
+	for (i = 0; i < num_row; i++){
+		var new_td = create_td();
+		table.childNodes[i].appendChild(new_td);
+	}
+}
+
+function delete_row() {
+	try{
+		var index = parseInt(prompt("Please enter index of row", ""));
+		var table = document.getElementsByTagName('table')[0];
+		var delete_row = table.childNodes[index - 1];
+		table.removeChild(delete_row);
+	}
+	catch(err){
+		alert("Wrong index!");
+	}
+}
+
+function delete_column(){
+	try{
+		var index = parseInt(prompt("Please enter index of row", ""));
+		var table = document.getElementsByTagName('table')[0];
+		var row_arr = table.childNodes;
+		var num_row = row_arr.length;
+		for (i = 0; i < num_row; i++ ){
+			var delete_col = row_arr[i].childNodes[index - 1];
+			row_arr[i].removeChild(delete_col);
+		}
+	}
+	catch(err){
+		alert("Wrong index!");
+	}
+}
+
+</script>
+</head>
+<body>
+	<div>
+		<button class="add" onclick="add_table()">Add new Table</button>
+		<button class="add" onclick="add_row()">Add new Row</button>
+		<button class="add" onclick="add_column()">Add new Column</button>
+		<button class="delete" onclick="delete_row()">Delete Row</button>
+		<button class="delete" onclick="delete_column()">Delete Column</button>
+		<button class="delete" onclick="delete_table()">Delete Table</button>
+		<p>Note : Can edit table</p>
+	</div>
+</body>
+</html>

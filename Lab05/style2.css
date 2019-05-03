@@ -1,0 +1,35 @@
+h2{
+	margin: 0px;
+	padding: 0px;
+}
+img{
+
+}
+#main-img{
+	width: 80%;
+	display: block;
+}
+a:hover{
+	color: #03B6F0;
+}
+#content{
+	margin-top: 60px;
+}
+#sub-imgs{
+	margin-top:20px;
+}
+.sub-img{
+	margin-right: 5px;
+	width: 20%;
+	border : 1px solid #eee;
+}
+.col-xs-6{
+	padding: 0px;
+}
+.bold{
+	font-weight: bold;
+	display: block;
+}
+#description{
+	margin-top:20px;
+}
